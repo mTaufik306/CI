@@ -8,13 +8,16 @@
   
   <body>
     <div id="container">
-    	<p>My view has been loaded</p>
-		
-		<?php foreach($records as $row) : ?>
-			<h1><?php echo $row->Title; ?></h1>
-      <p><?php echo $row->Content; ?></p>
-		<?php endforeach; ?>
+      <p>My view has been loaded</p>
+    
+    <?php foreach($rows as $r) : ?>
+    
+    <h1><?php echo $r->title; ?></h1>
+    <h5><a href=""><?php echo $r->author; ?></a></h5>
+    <div><p><?php echo $r->content; ?></p></div>
+    
+    <?php endforeach; ?>
     </div>
   </body>
 </html>
-	
+  
