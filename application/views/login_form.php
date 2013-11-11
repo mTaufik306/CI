@@ -2,7 +2,7 @@
 
 <div id="login_form">
 
-	<h1>Login, Right Here</h1>
+	<h1>Login, Here!</h1>
     <?php 
 	echo form_open('login/validate_credentials');
 	echo form_input('username', 'Username');
@@ -16,4 +16,3 @@
 
 <?php $this->load->view('includes/tut_info'); ?>
 	
-<?php $this->load->view('includes/footer'); ?>

@@ -12,9 +12,9 @@ class Login extends CI_Controller {
 	function validate_credentials()
 	{		
 		$this->load->model('membership_model');
-		$query = $this->membership_model->validate();
+		$valid = $this->membership_model->validate();
 		
-		if($query) // if the user's credentials validated...
+		if($valid) // if the user's credentials validated...
 		{
 			$data = array(
 				'username' => $this->input->post('username'),
