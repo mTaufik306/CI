@@ -9,7 +9,7 @@ class Site extends CI_Controller{
 		$this->load->library('pagination');
 		$this->load->library('table');
 		
-		//$this->table->set_heading('Id', 'The Title', 'The Content');
+		$this->table->set_heading('ID', 'The Title', 'Author', 'The Content');
 		
 		$config['base_url'] = 'http://localhost/CI/index.php/site/index';
 		$config['total_rows'] = $this->db->get('post')->num_rows();

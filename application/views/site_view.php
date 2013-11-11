@@ -6,7 +6,7 @@
 	<title>untitled</title>
 	<style type="text/css" media="screen">
 	#container {
-	 width: 600px;
+	 width: 700px;
 	 margin: auto;
 	font-family: helvetica, arial;
 	}
@@ -29,8 +29,12 @@
 	 text-align: left;
 	 padding-left: 1em;
 	 background: #cac9c9;
-	border-bottom: 1px solid white;
-	border-right: 1px solid #aaaaaa;
+	 border-bottom: 1px solid white;
+	 border-right: 1px solid #aaaaaa;
+	}
+
+	th:last-child{
+	 border-right: none;
 	}
 
 	#pagination a, #pagination strong {
