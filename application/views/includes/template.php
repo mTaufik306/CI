@@ -6,5 +6,6 @@
 	and should be passed as '$data[main_content]'
 -->
 <?php $this->load->view($main_content); ?>
+<?php $this->load->view('includes/tut_info'); ?>
 
 <?php $this->load->view('includes/footer'); ?>
