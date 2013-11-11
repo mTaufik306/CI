@@ -9,6 +9,7 @@
 	echo form_textarea($data, 'Message', 'id="message"');
 	echo form_submit('submit', 'Submit', 'id="submit"');
 	echo form_close();
+
 	?>
 
 </div>
@@ -16,11 +17,37 @@
 $('#submit').click(function() {
 	
 	var name = $('#name').val();
-	
-	if (!name || name == 'Name') {
+	var email = $('#email').val();
+	var message = $('#message').val();
+
+	//message field validation
+	if (!message) {
+		alert('Message can\'t be empty');
+		return false;
+	}
+
+	if(name=='Name'){
+		var r=confirm("Are you sure your name is \"Name\" ?");
+		if (r==false)
+		{
+		  	return false;
+		}
+	}
+	//name field validation
+	if (!name) {
 		alert('Please enter your name');
 		return false;
 	}
+
+	//email field validation
+	var atpos=email.indexOf("@");
+	var dotpos=email.lastIndexOf(".");
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+  	{
+  		alert("Not a valid e-mail address");
+  		return false;
+  	}
+  	
 	
 	var form_data = {
 		name: $('#name').val(),
