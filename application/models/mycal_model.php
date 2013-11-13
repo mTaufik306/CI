@@ -78,9 +78,33 @@ class Mycal_model extends CI_Model {
 		
 	}
 
+	function add_calendar_data($date, $data) {
+		
+		//if the given date has already contained a memo, update the old memo by the new 
+		//instead of inserting the new memo
+		if ($this->db->select('date')->from('calendar')
+				->where('date', $date)->count_all_results()) {
+			
+			$this->db->where('date', $date)
+				->update('calendar', array(
+				'date' => $date,
+				'memo' => $data			
+			));
+			
+		} else {
+		
+			$this->db->insert('calendar', array(
+				'date' => $date,
+				'memo' => $data			
+			));
+		}
+		
+	}
+
 	function generate($year, $month){
 		
 		$this->load->library('calendar',$this->conf);
+		$this->add_calendar_data('2013-11-13', 'get immersed in git and CI');
 		//adding data to specific date within the calendar
 		$cal_data = $this->get_calendar_data($year,$month);
 		return $this->calendar->generate($year, $month, $cal_data);
