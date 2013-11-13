@@ -4,15 +4,14 @@ class Mycal_model extends CI_Model {
 	var $conf;
 	function __construct(){
 		parent::__construct();
-	}
 
-	function generate($year, $month){
 		$this->conf = array(
 			'start_day' => 'monday',
 			'show_next_prev' =>true,
 			'next_prev_url' => base_url().'mycal/display'
 		);
 
+		
 		//see calendaring class in CI guide
 		$this->conf['template'] = '
 			{table_open}<table border="0" cellpadding="0" cellspacing="0" class="calendar">{/table_open}
@@ -29,14 +28,21 @@ class Mycal_model extends CI_Model {
 			{week_day_cell}<td>{week_day}</td>{/week_day_cell}
 			{week_row_end}</tr>{/week_row_end}
 
-			{cal_row_start}<tr>{/cal_row_start}
+			{cal_row_start}<tr class="days">{/cal_row_start}
 			{cal_cell_start}<td>{/cal_cell_start}
 
-			{cal_cell_content}<a href="{content}">{day}</a>{/cal_cell_content}
-			{cal_cell_content_today}<div class="highlight"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
+			{cal_cell_content}
+				<div class="day_num ">{day}</div>
+				<div class="content">{content}</div>
+			{/cal_cell_content}
+			{cal_cell_content_today}
+				<div class="day_num highlight">{day}</div>
+				<div class="content">{content}</div>
+			</div>{/cal_cell_content_today}
 
-			{cal_cell_no_content}{day}{/cal_cell_no_content}
-			{cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
+			{cal_cell_no_content}<div class="day_num ">{day}</div>{/cal_cell_no_content}
+			{cal_cell_no_content_today}<div class="day_num highlight">{day}</div>
+			{/cal_cell_no_content_today}
 
 			{cal_cell_blank}&nbsp;{/cal_cell_blank}
 
@@ -45,6 +51,10 @@ class Mycal_model extends CI_Model {
 
 			{table_close}</table>{/table_close}
 		';
+	}
+
+
+	function generate($year, $month){
 		
 		$this->load->library('calendar',$this->conf);
 		//adding data to specific date within the calendar
