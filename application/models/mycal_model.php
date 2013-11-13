@@ -30,7 +30,7 @@ class Mycal_model extends CI_Model {
 			{week_row_end}</tr>{/week_row_end}
 
 			{cal_row_start}<tr class="days">{/cal_row_start}
-			{cal_cell_start}<td>{/cal_cell_start}
+			{cal_cell_start}<td class="day">{/cal_cell_start}
 
 			{cal_cell_content}
 				<div class="day_num ">{day}</div>
