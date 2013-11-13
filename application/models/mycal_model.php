@@ -8,6 +8,7 @@ class Mycal_model extends CI_Model {
 		$this->conf = array(
 			'start_day' => 'monday',
 			'show_next_prev' =>true,
+			'day_type'	=> 'long',
 			'next_prev_url' => base_url().'mycal/display'
 		);
 
@@ -53,15 +54,35 @@ class Mycal_model extends CI_Model {
 		';
 	}
 
+	function get_calendar_data($year, $month) {
+		
+		//calendar table has 2 columns, date(date) and memo(text)
+		$query = $this->db->select('date, memo')->from('calendar')
+			->like('date', "$year-$month", 'after')->get();//"2013-11%"
+			
+		$cal_data = array();
+		
+		foreach ($query->result() as $row) {
+			$num = (int)substr($row->date,8,2);//substr(string,start,length)
+			//2013-11-{13}, 13 is the part of the date which is wanted to retrieved
+			//01 need to be converted into 1 to be passed into cal_data, just to make the memo showed
+			//because index of 01 won't show the memo, should be 1 => 'memo' rather than 01 => 'memo'  
+
+			$cal_data[$num] = $row->memo;
+			//param of month is already passed so what left is the specific data that need to be
+			//tracked, so the date is made to be the array index
+			//to sum it up, $cal_data will have range [1]..[31], depend on the row->data
+		}
+		
+		return $cal_data;
+		
+	}
 
 	function generate($year, $month){
 		
 		$this->load->library('calendar',$this->conf);
 		//adding data to specific date within the calendar
-		$cal_data = array(
-			15	=>'foo',
-			17	=>'bar'
-		);
+		$cal_data = $this->get_calendar_data($year,$month);
 		return $this->calendar->generate($year, $month, $cal_data);
 	}
 }
