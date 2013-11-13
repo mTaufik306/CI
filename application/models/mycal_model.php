@@ -104,7 +104,6 @@ class Mycal_model extends CI_Model {
 	function generate($year, $month){
 		
 		$this->load->library('calendar',$this->conf);
-		$this->add_calendar_data('2013-11-13', 'get immersed in git and CI');
 		//adding data to specific date within the calendar
 		$cal_data = $this->get_calendar_data($year,$month);
 		return $this->calendar->generate($year, $month, $cal_data);

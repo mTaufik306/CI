@@ -29,16 +29,16 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$('.calendar .day').click(function() {
-			day_num = $(this).find('.day_num').html();
-			day_data = prompt('Enter Stuff', $(this).find('.content').html());
-			if (day_data != null) {
+			date = $(this).find('.day_num').html();
+			date_memo = prompt('Enter Stuff', $(this).find('.content').html());
+			if (date_memo != null) {
 				
 				$.ajax({
 					url: window.location,
 					type: 'POST',
 					data: {
-						day: day_num,
-						data: day_data
+						date: date,
+						memo: date_memo
 					},
 					success: function(msg) {
 						location.reload();
