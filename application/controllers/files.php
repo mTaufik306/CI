@@ -47,8 +47,28 @@ class Files extends CI_Controller {
 		print_r($files);
 	}
 	
+	function dir_file_info_test(){
+		//return all files along with its directory within given path/directory
+		$files = get_dir_file_info($this->path);
+		print_r($files);
+	}
 	
+	function file_info_test(){
+		//return all detail of the given file
+		//param kedua merupakan element array yang ingin diretrieve
+		$info = get_file_info($this->file);
+		print_r($info);
+	}
 
+	function mime_test(){
+		//return mime type, like text/plain
+		//it doesn't check if the file exist
+		//it just read the file path or file name,
+		//check the extension and give corresponding mime information
+		echo get_mime_by_extension('hello.png');
+	}
+
+	
 }
 
 
