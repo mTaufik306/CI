@@ -68,7 +68,18 @@ class Files extends CI_Controller {
 		echo get_mime_by_extension('hello.png');
 	}
 
-	
+	function download_test(){
+		$string = "Hello";
+		force_download('Hello.txt',read_file($this->file));
+		//remember read_file will return the contain of the file
+	}
+
+	function display(){
+		//display contains of the folder, display it in tree structure instead of array
+		$data['files']=directory_map(BASEPATH);
+		$this->load->view('files',$data);	
+	}
+
 }
 
 
