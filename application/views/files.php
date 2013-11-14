@@ -3,6 +3,29 @@
 <head>
 	<title>Files</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<style type="text/css">
+		body {
+			font: 14px/19px verdana, sans-serif;
+			font-variant: small-caps;
+		}
+		.folder {
+			background-image: url(<?php echo base_url(); ?>/images/folder.png);
+			background-repeat: no-repeat;
+		}
+		.file {
+			background-image: url(<?php echo base_url(); ?>/images/file.png);
+			background-repeat: no-repeat;	
+		}
+		ul {
+			list-style: none;
+			padding-left: 20px;
+			cursor: pointer;
+		}
+		li{
+			padding-left: 20px;
+			margin: 2px;
+		}
+	</style>
 </head>
 <body>
 	<?php //print_r($files); ?>
