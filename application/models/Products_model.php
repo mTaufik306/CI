@@ -16,5 +16,17 @@ class Products_model extends CI_Model {
 		return $results;
 		
 	}
+
+	function get($id) {
+		
+		$results = $this->db->get_where('products', array('id' => $id))->result();
+		$result = $results[0];
+		
+		if ($result->option_value) {
+			$result->option_value = explode(',',$result->option_value);
+		}
+		
+		return $result;
+	}
 	
 }
