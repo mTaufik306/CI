@@ -41,6 +41,15 @@ class Shop extends CI_Controller {
 		//$this->index();
 	}
 
-	
+	function remove($rowid) {
+		
+		$this->cart->update(array(
+			'rowid' => $rowid,
+			'qty' => 0
+		));
+		
+		redirect('shop');
+		
+	}
 	
 }
