@@ -7,19 +7,19 @@ class Foo
   /**
 	this global variabel means super CI object, it's needed to be able to load system library 
   */
-  protected 	$ci;
+  protected 	$CI;
 
 	public function __construct()
 	{
-        $this->ci =& get_instance();//get instance is CI function and return super object
+        $this->CI =& get_instance();//get instance is CI function and return super object
 	}
 
 	function test($value) {
 		echo "You pass me $value. <br/>";
 		// $this->load->library('Config');
-		$this->ci->load->library('config');
+		$this->CI->load->library('config');
 
-		echo "Your language is: ".$this->ci->config->item('language');
+		echo "Your language is: ".$this->CI->config->item('language');
 	}
 
 	
