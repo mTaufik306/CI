@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<title>Films</title>
+	<meta charset="UTF-8">
 	<style>
 		* {
 			font-family: Arial;
@@ -36,25 +37,30 @@
 	</div>
 	<table>
 		<thead>
-			<th>ID</th>
-			<th>Title</th>
-			<th>Category</th>
-			<th>Length</th>
-			<th>Rating</th>
-			<th>Price</th>
+		<?php foreach($fields as $field_name => $field_display): ?>
+		<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
+			<?php echo anchor("films/display/$field_name/" .
+				(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+				$field_display); ?>
+		</th>
+		<?php endforeach; ?>
 		</thead>
 		<tbody>
-			<?php foreach ($films as $film): ?>
+			<?php foreach($films as $film): ?>
 			<tr>
-				<td><?php echo $film->FID; ?></td>
-				<td><?php echo $film->title;?></td>
-				<td><?php echo $film->category;?></td>
-				<td><?php echo $film->length;?></td>
-				<td><?php echo $film->rating;?></td>
-				<td><?php echo $film->price;?></td>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php echo $film->$field_name; ?>
+				</td>
+				<?php endforeach; ?>
 			</tr>
-			<?php endforeach;?>
+			<?php endforeach; ?>
 		</tbody>
 	</table>
+	<?php if(strlen($pagination)): ?>
+		<div>
+			Pages: <?php echo $pagination ?>;
+		</div>
+	<?php endif;?>
 </body>
 </html>
