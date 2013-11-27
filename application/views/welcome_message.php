@@ -49,7 +49,7 @@
 	}
 	
 	p.footer{
-		text-align: right;
+		text-align: left;
 		font-size: 11px;
 		border-top: 1px solid #D0D0D0;
 		line-height: 32px;
@@ -80,7 +80,7 @@
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 	</div>
-
+	
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 

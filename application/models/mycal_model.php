@@ -64,8 +64,8 @@ class Mycal_model extends CI_Model {
 		
 		foreach ($query->result() as $row) {
 			$num = (int)substr($row->date,8,2);//substr(string,start,length)
-			//2013-11-{13}, 13 is the part of the date which is wanted to retrieved
-			//01 need to be converted into 1 to be passed into cal_data, just to make the memo showed
+			//2013-11-{13}, 13 is the part of the date which is wanted to be retrieved
+			//01 need to be converted into 1 to be the index of the array, just to make the memo showed
 			//because index of 01 won't show the memo, should be 1 => 'memo' rather than 01 => 'memo'  
 
 			$cal_data[$num] = $row->memo;

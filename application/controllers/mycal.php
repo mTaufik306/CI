@@ -1,6 +1,12 @@
 <?php
 class Mycal extends CI_Controller {
 	
+	function __construct(){
+		parent::__construct();
+		//profiling - Measuring system performance
+		// $this->output->enable_profiler(TRUE);
+	}
+
 	function display() {
 
 		$year = $this->uri->segment(3);
@@ -22,8 +28,10 @@ class Mycal extends CI_Controller {
 			);
 		}
 
+		$this->benchmark->mark('generate_start');
 		$data['calendar']=$this->mycal_model->generate($year,$month);
-
+		$this->benchmark->mark('generate_end');
+		
 		$this->load->view('mycal',$data);
 		
 	}
